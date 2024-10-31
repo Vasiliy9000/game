@@ -20,30 +20,40 @@ function field() { // здес мы зададим размер поля
   }
 }
 
+
 function player() {
   var x = 5; // стартовые кординаты
   var y = 5;
-  document.addEventListener('keydown', function(event) {    //  // удаление предыдущего положения
-    if (event.code == 'KeyW' && (y > 0)) {
-      window[x + "/" + y].style.background = 'red';
-      var concat = x + "/" + (y = y - 1);
-    }
-    if (event.code == 'KeyS' && (y < (mapSize - 1))) { // не красиво      
-      window[x+"/"+ y].style.background = 'red';
-      var concat = x + "/" + (y = y + 1);
-    }
-    if (event.code == 'KeyA' && (x > 0)) {
-      window[x + "/" + y].style.background = 'red';
-      var concat = (x = x - 1) + "/" + y;
-      }
-    if (event.code == 'KeyD' && (x < (mapSize - 1))) { // не красиво
-      window[x + "/" + y].style.background = 'red';
-      var concat = (x = x + 1) + "/" + y;
-    }
-    window[concat].style.background = 'green'; // новое положение
-  });
-        player();
-    }
+  
+  if(y > 0 && x > 0 && y < (mapSize - 1) && x < (mapSize - 1)){
+    document.addEventListener('keydown', function(event) {
+      alert(event.code)
         
+        switch (event.code) {
+          case 'KeyW':
+            window[x + "/" + y].style.background = 'red'; // удаление предыдущего положения
+            var concat = x + "/" + (y = y - 1);
+            window[concat].style.background = 'green'; // новое положение
+            break;
+      }
+      
+      // if (event.code == 'KeyS' && (y < (mapSize - 1))) { // не красиво      
+      //   window[x+"/"+ y].style.background = 'red';
+      //   var concat = x + "/" + (y = y + 1);
+      // }
+      // if (event.code == 'KeyA' && (x > 0)) {
+      //   window[x + "/" + y].style.background = 'red';
+      //   var concat = (x = x - 1) + "/" + y;
+      //   }
+      // if (event.code == 'KeyD' && (x < (mapSize - 1))) { // не красиво
+      //   window[x + "/" + y].style.background = 'red';
+      //   var concat = (x = x + 1) + "/" + y;
+      // }
+      
+    });
+  }
+  player();
+}
+
   field();
   player();
